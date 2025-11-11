@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mons Magna - Manajemen Keuangan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <style>
+    :root {
+      --bg-soft: #f7f8fb;
+      --card-border: #e6e8ef;
+      --text-muted: #6c757d;
+      --text-dark: #1f2a37;
+      --primary-dark: #12131a;
+      --accent-green: #2fcd83;
+      --accent-blue: #3f8cff;
+      --accent-red: #ef4444;
+      --accent-purple: #7b61ff;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
+      background: var(--bg-soft);
+      color: var(--text-dark);
+      min-height: 100vh;
+    }
+
+    .topbar {
+      background: #fff;
+      border-bottom: 1px solid var(--card-border);
+      padding: 1rem 1.5rem;
+    }
+
+    .brand-logo {
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      background: #fff;
+      border: 1px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .brand-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .nav-tabs.dashboard-tabs {
+      border: none;
+      gap: 0.75rem;
+    }
+
+    .nav-tabs.dashboard-tabs .nav-link {
+      border: none;
+      border-radius: 999px;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: transparent;
+      padding: 0.65rem 1.4rem;
+      white-space: nowrap;
+    }
+
+    .nav-tabs.dashboard-tabs .nav-link.active {
+      background: var(--text-dark);
+      color: #fff;
+      box-shadow: 0 12px 24px rgba(22, 34, 51, 0.18);
+    }
+
+    .page-container {
+      padding: clamp(1.5rem, 1.5vw + 1rem, 2.5rem);
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .page-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.75rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .page-title {
+      margin: 0;
+      font-size: clamp(1.35rem, 2vw, 1.8rem);
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .page-subtitle {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .stat-card {
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      background: #fff;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      height: 100%;
+    }
+
+    .stat-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #fff;
+      font-size: 0.95rem;
+    }
+
+    .stat-label {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .stat-value {
+      font-size: clamp(1.35rem, 1.5vw + 1rem, 1.85rem);
+      font-weight: 700;
+      color: var(--text-dark);
+      margin: 0;
+    }
+
+    .stat-subtext {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    .report-section {
+      border-radius: 24px;
+      background: #fff;
+      border: 1px solid var(--card-border);
+      padding: 1.75rem;
+    }
+
+    .btn-dark-rounded {
+      border-radius: 12px;
+      padding: 0.75rem 1.4rem;
+      font-weight: 600;
+    }
+
+    .table-card thead,
+    .report-section thead {
+      background: #f0f1f6;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+    }
+
+    footer {
+      padding: 1.5rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 992px) {
+      .nav-tabs.dashboard-tabs {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .page-container {
+        padding: 1.25rem;
+      }
+
+      .btn-dark-rounded {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+      <div class="d-flex align-items-center gap-3">
+        <div class="brand-logo">
+          <img src="image/Logo.jpeg.jpg" alt="Logo Mons Magna">
+        </div>
+        <div>
+          <h1 class="h5 mb-1 fw-bold">Mons Magna</h1>
+          <p class="mb-0 small text-secondary">Sistem Manajemen Produk &amp; Inventori</p>
+        </div>
+      </div>
+      <div class="d-flex align-items-center gap-3 flex-wrap">
+        <div class="text-end">
+          <span class="d-block small text-secondary">Login sebagai</span>
+          <span class="fw-semibold">Owner</span>
+        </div>
+        <a class="btn btn-outline-dark rounded-3 px-4 py-2" href="login.html">Keluar</a>
+      </div>
+    </div>
+    <ul class="nav nav-tabs dashboard-tabs mt-4">
+      <li class="nav-item"><a class="nav-link" href="orders.html">Pesanan</a></li>
+      <li class="nav-item"><a class="nav-link" href="inventory.html">Inventori Bahan</a></li>
+      <li class="nav-item"><a class="nav-link active" href="finance.html">Keuangan</a></li>
+      <li class="nav-item"><a class="nav-link" href="reports.html">Laporan</a></li>
+    </ul>
+  </header>
+
+  <main class="page-container">
+    <div class="page-header">
+      <div>
+        <h2 class="page-title">Manajemen Keuangan</h2>
+        <p class="page-subtitle">Lacak pendapatan, pengeluaran, dan profitabilitas</p>
+      </div>
+      <div class="d-flex flex-wrap gap-2">
+        <button class="btn btn-outline-secondary btn-dark-rounded">Export Laporan</button>
+        <button class="btn btn-outline-secondary btn-dark-rounded">Tambah Pengeluaran</button>
+        <button class="btn btn-dark btn-dark-rounded">Tambah Pendapatan</button>
+      </div>
+    </div>
+
+    <div class="row g-3 g-lg-4 mb-4">
+      <div class="col-12 col-sm-6 col-xl-3">
+        <div class="stat-card">
+          <div class="stat-icon" style="background: var(--accent-green);">Rp</div>
+          <span class="stat-label">Total Pendapatan</span>
+          <p class="stat-value">IDR 0.0M</p>
+          <p class="stat-subtext">Pendapatan bulan ini</p>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-xl-3">
+        <div class="stat-card">
+          <div class="stat-icon" style="background: var(--accent-red);">Rp</div>
+          <span class="stat-label">Total Pengeluaran</span>
+          <p class="stat-value">IDR 0.0M</p>
+          <p class="stat-subtext">Pengeluaran bulan ini</p>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-xl-3">
+        <div class="stat-card">
+          <div class="stat-icon" style="background: var(--accent-blue);">π</div>
+          <span class="stat-label">Laba Bersih</span>
+          <p class="stat-value">IDR 0.0M</p>
+          <p class="stat-subtext">Pendapatan - Pengeluaran</p>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-xl-3">
+        <div class="stat-card">
+          <div class="stat-icon" style="background: var(--accent-purple);">%</div>
+          <span class="stat-label">Margin Laba</span>
+          <p class="stat-value">0.0%</p>
+          <p class="stat-subtext">Rasio profitabilitas</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="report-section mb-4">
+      <div class="d-flex flex-wrap gap-3 align-items-center justify-content-between mb-3">
+        <div>
+          <h3 class="h5 fw-bold mb-1">Transaksi</h3>
+          <p class="text-secondary mb-0">Riwayat pemasukan dan pengeluaran</p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <button class="btn btn-outline-secondary btn-dark-rounded">Semua Tipe</button>
+          <button class="btn btn-outline-secondary btn-dark-rounded">Semua Kategori</button>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table align-middle mb-0">
+          <thead>
+            <tr>
+              <th>Tanggal</th>
+              <th>Tipe</th>
+              <th>Kategori</th>
+              <th>Deskripsi</th>
+              <th>Jumlah (IDR)</th>
+              <th>Metode Pembayaran</th>
+              <th>Referensi</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td colspan="8" class="text-center py-5 text-secondary">Belum ada transaksi.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 Mons Magna. Semua hak dilindungi.
+  </footer>
+</body>
+</html>
+
